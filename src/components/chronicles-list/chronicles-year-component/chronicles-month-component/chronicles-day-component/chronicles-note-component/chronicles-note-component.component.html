@@ -1,0 +1,5 @@
+<div *ngIf="!note.isEditing">{{ note.note }}</div>
+<div *ngIf="note.isEditing" class="flex">
+  <textarea rows="4" cols="50" [(ngModel)]="note.note"></textarea>
+  <input type="button" value="Add" (click)="onNoteAdded()"/>
+</div>

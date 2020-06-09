@@ -1,0 +1,7 @@
+<app-chronicles-add-new-component (addNew)="addNew($event)" [value]="'Add year'"></app-chronicles-add-new-component>
+
+<ul>
+  <li *ngFor="let year of years">
+    <app-chronicles-year-component [year]="year" (newYearAdded)="onYearAdded()" [allYears]="years"></app-chronicles-year-component>
+  </li>
+</ul>

@@ -1,0 +1,16 @@
+<div *ngIf="!day.isEditing" class="flex">
+  {{ day.id }}
+  <app-chronicles-add-new-component (addNew)="addNewNote($event)" [value]="'Add note'"></app-chronicles-add-new-component>
+</div>
+<div *ngIf="day.isEditing" class="flex">
+  <select [(ngModel)]="newDay">
+    <option *ngFor="let dayOption of days" [value]="dayOption" >{{dayOption}}</option>
+  </select>
+  <input type="button" value="Add" (click)="onDayAdded()"/>
+</div>
+
+<ul>
+  <li *ngFor="let note of day.notes">
+    <app-chronicles-note-component [note]="note" (newNoteAdded)="onNoteAdded()"></app-chronicles-note-component>
+  </li>
+</ul>

@@ -1,0 +1,16 @@
+<div class="flex" *ngIf="!year.isEditing">
+  {{ year.id }}
+  <app-chronicles-add-new-component (addNew)="addNewMonth($event)" [value]="'Add month'"></app-chronicles-add-new-component>
+</div>
+<div *ngIf="year.isEditing" class="flex">
+  <select [(ngModel)]="newYear">
+    <option *ngFor="let yearOption of years" [value]="yearOption" >{{yearOption}}</option>
+  </select>
+  <input type="button" value="Add" (click)="onYearAdded()"/>
+</div>
+
+<ul>
+  <li *ngFor="let month of year.months">
+    <app-chronicles-month-component [month]="month" (newMonthAdded)="onMonthAdded()" [allMonths]="year.months"></app-chronicles-month-component>
+  </li>
+</ul>

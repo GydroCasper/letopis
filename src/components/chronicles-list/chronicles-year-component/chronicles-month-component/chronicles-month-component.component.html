@@ -1,0 +1,16 @@
+<div class="flex" *ngIf="!month.isEditing">
+  {{ monthsService.getMonthTitleByNumber(month.id) }}
+  <app-chronicles-add-new-component (addNew)="addNewDay($event)" [value]="'Add day'"></app-chronicles-add-new-component>
+</div>
+<div *ngIf="month.isEditing" class="flex">
+  <select [(ngModel)]="newMonth">
+    <option *ngFor="let monthOption of months" [value]="monthOption.id" >{{monthOption.title}}</option>
+  </select>
+  <input type="button" value="Add" (click)="onMonthAdded()"/>
+</div>
+
+<ul>
+  <li *ngFor="let day of month.days">
+    <app-chronicles-day-component [day]="day" (newDayAdded)="onDayAdded()" [allDays]="month.days"></app-chronicles-day-component>
+  </li>
+</ul>
